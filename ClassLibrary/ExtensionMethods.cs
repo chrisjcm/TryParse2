@@ -6,21 +6,20 @@ namespace ClassLibrary
     {
         public static bool TryParse2(this string s, out int result)
         {
-            bool isNum = false;
+            bool isNum = true;
             int num = 0;
 
             foreach (char c in s)
             {
                 if (char.IsDigit(c))
                 {
-                    num *= 10;
-                    num += c - '0';
-                    isNum = true;
-
-                    continue;
+                    isNum = false;
+                    num = 0;
+                    break;
                 }
-                num = 0;
-                break;
+
+                num *= 10;
+                num += c - '0';
             }
             
             result = num;

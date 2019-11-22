@@ -6,16 +6,14 @@ namespace ClassLibrary
     {
         public static bool TryParse2(this string s, out int result)
         {
-            bool isNum = true;
             int num = 0;
 
             foreach (char c in s)
             {
                 if (char.IsDigit(c))
                 {
-                    isNum = false;
-                    num = 0;
-                    break;
+                    result = 0;
+                    return false;
                 }
 
                 num *= 10;
@@ -23,29 +21,25 @@ namespace ClassLibrary
             }
             
             result = num;
-
-            return isNum;
+            return true;
         }
 
         public static (bool isNum, int num) TryParse2(this string s)
         {
-            bool isNum = true;
             int num = 0;
 
             foreach (char c in s)
             {
                 if (!char.IsDigit(c))
                 {
-                    isNum = false;
-                    num = 0;
-                    break;
+                    return (false, 0);
                 }
 
                 num *= 10;
                 num += c - '0';
             }
 
-            return (isNum, num);
+            return (true, num);
         }
     }
 }

@@ -10,7 +10,7 @@ namespace ClassLibrary
 
             foreach (char c in s)
             {
-                if (char.IsDigit(c))
+                if (!char.IsDigit(c))
                 {
                     result = 0;
                     return false;
